@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset ="utf-8">
+    <title>Personal Trainer</title>
+    <meta name="author" content="Alex">
+    <meta name="description" content="Calendar">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favIcon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favIcon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favIcon/favicon-16x16.png">
+    <link rel="manifest" href="favIcon/site.webmanifest">
+
+    <link href="libs/css/bootstrap.min.css" rel="stylesheet"  >            
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="libs/css/style.css" rel="stylesheet">
+  </head>
+      
+      
+  <body class="bg-dark"> 
+
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+      <div class="container-fluid align-items-start justify-content-between">
+        <div class="col p-2  text-center">
+          <h1 class="text-light">TRAINER INTERFACE</h1>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" >
+          <i class="fa-solid fa-gear text-light"></i>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Settings</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="trainer.html">Trainer Interface</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <!--DAYS-->
+    <div class="page p-3 container text-start">
+      <div class="row justify-content-center">
+        <div class="col m-2 p-2">
+          <h1 class="text-light">TRAINER PROGRAMMER</h1>
+        </div>
+      </div>
+      <!--PLANS-->
+      <div class="container">
+        <div class="row ">
+          <div class="col-auto"> 
+            <h3 class="text-light"><i>Plans</i></h3>
+          </div>
+          <div class="col">
+            <button id="addPlan" type="button" class="btn btn-outline-success">
+              <i class="fa-solid fa-plus fa-fw"></i>
+            </button>
+          </div>
+        </div>
+        <div id="planTable">
+          <!--PLAN TABLE-->
+        </div>
+      </div>
+      <!--WORKOUTS-->
+      <div class="container">
+        <div class="row">
+          <div class="col-auto"> 
+            <h3 class="text-light"><i>Workouts</i></h3>
+          </div>
+          <div class="col">
+            <button id="addWorkout" type="button" class="btn btn-outline-success">
+              <i class="fa-solid fa-plus fa-fw"></i>
+            </button>
+          </div>
+        </div>
+        <div id="workoutTable">
+          <!--WORKOUT TABLE-->
+        </div>
+      </div>
+      <!--SEARCH BAR-->
+      <div class="container">
+        <!--EXERCISES-->
+        <div class="row ">
+          <div class="col-auto"> 
+            <h3 class="text-light"><i>Exercises</i></h3>
+          </div>
+          <div class="col">
+            <button id="addNewExercise" type="button" class="btn btn-outline-success">
+              <i class="fa-solid fa-plus fa-fw"></i>
+            </button>
+          </div>
+          <div class="col-auto mt-1">
+            <form id="searchForm" class=" me-5" role="search">
+              <input id="search" type="search" class="form-control" placeholder="Search Exercise..." aria-label="Search">
+            </form>
+          </div>
+        </div>
+        <div id="exerciseTable">
+          <!--PLAN TABLE-->
+        </div>
+      </div>
+    </div>
+
+    <!--ADD PLAN-->
+    <div class="modal fade" id="newPlanModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header bg-dark">
+                  <h1 class="modal-title fs-5 text-primary">New Plan</h1>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="container">
+                  <form id="newPlan">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Name</span>
+                      <input id="planName" type="text" class="form-control" required>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Monday</span>
+                      <select id="mondayID" class="form-select day" required>
+                        <!--workout dropdown-->
+                      </select>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Tuesday</span>
+                      <select id="tuesdayID"  class="form-select day" required>
+                        <!--workout dropdown-->
+                      </select>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Wednesday</span>
+                      <select  id="wednesdayID" class="form-select day" required>
+                        <!--workout dropdown-->
+                      </select>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Thursday</span>
+                      <select  id="thursdayID" class="form-select day" required>
+                        <!--workout dropdown-->
+                      </select>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Friday</span>
+                      <select  id="fridayID" class="form-select day" required>
+                        <!--workout dropdown-->
+                      </select>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Saturday</span>
+                      <select id="saturdayID" class="form-select day" required>
+                        <!--workout dropdown-->
+                      </select>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Sunday</span>
+                      <select id="sundayID" class="form-select day" required>
+                        <!--workout dropdown-->
+                      </select>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button form="newPlan" type="submit" class="btn btn-primary">Add Plan</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!--ADD WORKOUT-->
+    <div class="modal fade" id="newWorkoutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header bg-dark">
+                  <h1 class="modal-title fs-5 text-primary">New Workout</h1>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="container">
+                  <form id="newWorkout">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Name</span>
+                      <input id="workoutName" type="text" class="form-control" required>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button form="newWorkout" type="submit" class="btn btn-primary">Add Workout</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!--ADD EXERCISE TO WORKOUT-->
+    <div class="modal fade" id="addExerciseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+              <div class="modal-header bg-dark">
+                  <h1 class="modal-title fs-5 text-primary">Add Exercise to Workout</h1>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="container">
+                  <form id="addExerciseForm">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Exercise</span>
+                      <select id="selectedExercise" class="form-select selectExercise" required>
+                        <!--sets exercises-->
+                      </select>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Reps</span>
+                      <input id="selectedReps" type="text" class="form-control selectReps" required disabled>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Sets</span>
+                      <input id="selectedSets" type="text" class="form-control selectSets" required disabled>
+                    </div>
+                  </form>
+                </div>
+              
+              
+                <div class="container">
+                  <div>
+                    <p id="addToWorkoutID" hidden></p>
+                    <h3 id="addToWorkout" class="currentWorkout"></h3>
+                  </div>
+                  <div class="existingExercises">
+                    <!--TABLE OF EXERCISES-->
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button form="addExerciseForm" type="submit" class="btn btn-primary">Add Exercise</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!--REMOVE EXERCISE FROM WORKOUT-->
+    <div class="modal fade" id="removeExerciseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+              <div class="modal-header bg-dark">
+                  <h1 class="modal-title fs-5 text-primary">Remove Exercise from Workout</h1>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="container">
+                  <form id="removeExerciseForm">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Exercise</span>
+                      <select id="exerciseRemove" class="form-select selectExercise" required>
+                        <!--sets exercises-->
+                      </select>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Reps</span>
+                      <input id="repsRemove" type="text" class="form-control selectReps" required disabled>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Sets</span>
+                      <input id="setsRemove" type="text" class="form-control selectSets" required disabled>
+                    </div>
+                  </form>
+                </div>              
+                <div class="container">
+                  <div>
+                    <p id="removeFromWorkoutID" hidden></p>
+                    <h3 id="removeFromWorkout" class="currentWorkout"></h3>
+                  </div>
+                  <div class="existingExercises">
+                    <!--TABLE OF EXERCISES-->
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button form="removeExerciseForm" type="submit" class="btn btn-primary">Remove Exercise</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!--ADD EXERCISE-->
+    <div class="modal fade" id="newExerciseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header bg-dark">
+                  <h1 class="modal-title fs-5 text-primary">New Exercise</h1>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="container">
+                  <form id="addExercise">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Name</span>
+                      <input id="exerciseName" type="text" class="form-control min-vw-75" required>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Reps</span>
+                      <select id="reps" class="form-select selectReps" required>
+                        <!--reps dropdown-->
+                      </select>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text col-4 col-sm-3">Sets</span>
+                      <select id="sets" class="form-select selectSets" required>
+                        <!--sets dropdown-->
+                      </select>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button form="addExercise" type="submit" class="btn btn-primary">Add Exercise</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!--EDIT WORKOUT-->
+    <div class="modal fade" id="editWorkoutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-dark">
+            <h1 class="modal-title fs-5 text-primary">Edit Workout</h1>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <div id="editWorkoutBtn" class="col-3"><button class="btn btn-outline-primary mb-3">Edit</button></div>
+                <div class="col"></div>
+              </div>                                          
+            </div>                                         
+          
+            <div class="container">
+              <form id="updateWorkout">
+                <input type="hidden" id="editWorkoutID">
+                <div class="input-group mb-3">
+                  <span class="input-group-text col-4 col-sm-3">Name</span>
+                  <input id="editWorkoutName" type="text" class="form-control" required disabled>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary" form="updateWorkout">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--EDIT EXERCISE-->
+    <div class="modal fade" id="editExerciseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-dark">
+            <h1 class="modal-title fs-5 text-primary">Edit Exercise</h1>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <div id="editExerciseBtn" class="col-3"><button class="btn btn-outline-primary mb-3">Edit</button></div>
+                <div class="col"></div>
+              </div>                                          
+            </div>                                    
+            <div class="container">
+              <form id="updateExercise">
+                <input type="hidden" id="editExerciseID">
+                <div class="input-group mb-3">
+                  <span class="input-group-text col-4 col-sm-3">Name</span>
+                  <input id="editExerciseName" type="text" class="form-control" required disabled>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text col-4 col-sm-3">Reps</span>
+                  <select id="editReps" class="form-select selectReps" required disabled>
+                    <!--reps dropdown-->
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text col-4 col-sm-3">Sets</span>
+                  <select id="editSets" class="form-select selectSets" required disabled>
+                    <!--sets dropdown-->
+                  </select>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary" form="updateExercise">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--DELETE PLAN-->
+    <div class="modal fade" id="deletePlanModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+              <div class="modal-header bg-danger">
+                  <h1  class="modal-title fs-5 text-white">Warning!</h1>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input type="hidden" id="deletePlanID">
+                <p>Are you sure you want to delete the following plan?</p>
+                <ul id="confirmPlan"></ul>
+              </div>
+              <div class="modal-footer">
+                <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button id="confirmDeletePlan" type="button" class="btn btn-danger">Confirm</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!--DELETE WORKOUT-->
+    <div class="modal fade" id="deleteWorkoutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+              <div class="modal-header bg-danger">
+                  <h1  class="modal-title fs-5 text-white">Warning!</h1>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input type="hidden" id="deleteWorkoutID">
+                <p>Are you sure you want to delete the following workout?</p>
+                <ul id="confirmWorkout"></ul>
+              </div>
+              <div class="modal-footer">
+                <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button id="confirmDeleteWorkout" type="button" class="btn btn-danger">Confirm</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!--DELETE EXERCISE-->
+    <div class="modal fade" id="deleteExerciseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+              <div class="modal-header bg-danger">
+                  <h1  class="modal-title fs-5 text-white">Warning!</h1>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input type="hidden" id="deleteExerciseID">
+                <p>Are you sure you want to delete the following exercise?</p>
+                <ul id="confirmExercise"></ul>
+              </div>
+              <div class="modal-footer">
+                <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button id="confirmDeleteExercise" type="button" class="btn btn-danger">Confirm</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!--CANT DELETE-->
+    <div class="modal fade" id="selectModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header bg-dark">
+                  <h1  class="modal-title fs-5 text-primary">Cannot Delete...</h1>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div id="cantDelete" class="modal-body">
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!--EDIT PLAN-->
+    <div class="modal fade" id="editPlanModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-dark">
+              <h1 class="modal-title fs-5 text-primary">Edit Plan</h1>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <div id="editPlanBtn" class="col-3"><button class="btn btn-outline-primary mb-3">Edit</button></div>
+                <div class="col"></div>
+              </div>                                          
+            </div>                                        
+          
+            <div class="container">
+              <form id="updatePlan">
+                <input type="hidden" id="editPlanID">
+                <div class="input-group mb-3">
+                  <span class="input-group-text col-4 col-sm-3">Name</span>
+                  <input id="editPlanName" type="text" class="form-control" required disabled>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text col-4 col-sm-3">Monday</span>
+                  <select id="editMonday" class="form-select day" required disabled>
+                    <!--workout dropdown-->
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text col-4 col-sm-3">Tuesday</span>
+                  <select id="editTuesday" class="form-select day" required disabled>
+                    <!--workout dropdown-->
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text col-4 col-sm-3">Wednesday</span>
+                  <select id="editWednesday" class="form-select day" required disabled>
+                    <!--workout dropdown-->
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text col-4 col-sm-3">Thursday</span>
+                  <select id="editThursday" class="form-select day" required disabled>
+                    <!--workout dropdown-->
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text col-4 col-sm-3">Friday</span>
+                  <select id="editFriday" class="form-select day" required disabled>
+                    <!--workout dropdown-->
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text col-4 col-sm-3">Saturday</span>
+                  <select id="editSaturday" class="form-select day" required disabled>
+                    <!--workout dropdown-->
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text col-4 col-sm-3">Sunday</span>
+                  <select id="editSunday" class="form-select day" required disabled>
+                    <!--workout dropdown-->
+                  </select>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary" form="updatePlan">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    
+    <footer class="text-center pb-2 text-light">Alex's PersonalTrainer</footer>
+                   
+    <script type="application/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="application/javascript" src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script type="application/javascript" src="libs/js/bootstrap.bundle.min.js" ></script>
+    <script type="application/javascript" src="libs/js/trainer.js"></script>
+  </body>
+  
+</html>

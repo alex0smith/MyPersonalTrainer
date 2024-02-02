@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset ="utf-8">
+    <title>Home Workout Plan</title>
+    <meta name="author" content="Alex">
+    <meta name="description" content="Calendar">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favIcon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favIcon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favIcon/favicon-16x16.png">
+    <link rel="manifest" href="favIcon/site.webmanifest">
+
+    <link href="libs/css/bootstrap.min.css" rel="stylesheet"  >            
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="libs/css/style.css" rel="stylesheet">
+  </head>
+      
+      
+  <body class="bg-dark"> 
+    
+    <!--WEEK-->
+    <div id="page" class="page p-3 container">
+      
+      <div class="row justify-content-center">
+        <div class="col m-2">
+          <select class="form-select">
+          </select>
+        </div>
+      </div>
+      <!--NAV-->
+      <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid align-items-start justify-content-between">
+          <div class="col-auto p-2">
+            <select id="choosePlan" class="form-select">
+              <option>Select a Plan</option>
+            </select>
+          </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" >
+            <i class="fa-solid fa-gear text-light"></i>
+          </button>
+          <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Settings</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="trainer.html">Trainer Interface</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!--DAYS-->
+      <div class="row justify-content-center">
+        <a href="monday.html" class="col-12 col-md btn btn-outline-success text-light border border-4 rounded-5 p-5 m-2 border-success"><p><strong>MONDAY</strong></p><i id="mon"></i></a>
+        <a href="tuesday.html" class="col-12 col-md btn btn-outline-success text-light border border-4 rounded-5 p-5 m-2 border-success"><p><strong>TUESDAY</strong></p><i id="tue"></i></a>     
+        <a href="wednesday.html" class="col-12 col-md btn btn-outline-success text-light border border-4 rounded-5 p-5 m-2 border-success"><p><strong>WEDNESDAY</strong></p><i id="wed"></i></a>
+      </div>
+
+      <div class="row justify-content-center">
+        <a href="thursday.html" class="col-12 col-md-4 btn border btn-outline-success text-light border-4 rounded-5 p-5 m-2 border-success"><p><strong>THURSDAY</strong></p><i id="thu"></i></a>      
+        <a href="friday.html" class="col-12 col-md-4 btn border btn-outline-success text-light border-4 rounded-5 p-5 m-2 border-success"><p><strong>FRIDAY</strong></p><i id="fri"></i></a>
+        
+      </div>
+
+      <div class="row justify-content-center">
+        
+        <a href="saturday.html" class="col-12 col-md-4 btn border btn-outline-success text-light border-4 rounded-5 p-5 m-2 border-success"><p><strong>SATURDAY</strong></p><i id="sat"></i></a>
+        <a href="sunday.html" class="col-12 col-md-4 btn border btn-outline-success text-light border-4 rounded-5 p-5 m-2 border-success"><p><strong>SUNDAY</strong></p><i id="sun"></i></a>
+        
+      </div>
+    </div>
+    
+    <footer class="text-center text-light pb-2">Alex's PersonalTrainer</footer>
+    
+    
+    <script type="application/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="apaplication/javascript" src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script type="application/javascript" src="libs/js/bootstrap.bundle.min.js" ></script>
+    <script type="application/javascript" src="libs/js/script.js"></script>
+  </body>
+  
+</html>
